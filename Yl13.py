@@ -1,4 +1,3 @@
-
 user_input = input("Enter a string: ")
 
 trimmed_string = user_input.strip()
