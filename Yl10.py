@@ -1,7 +1,5 @@
-
 name = input("What is your name? ")
 print(f"Hello, {name}! Nice to meet you.")
-
 
 residence = input("Where do you live? ")
 if residence.lower() == "saaremaa":

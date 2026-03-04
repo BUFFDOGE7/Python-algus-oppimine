@@ -1,60 +1,31 @@
 import random
 
-def play_game():
-    """Play one round of rock-paper-scissors"""
-    options = ['rock', 'paper', 'scissors']
-    computer_choice = random.choice(options)
-    
-    print("\nChoose: rock, paper, or scissors")
-    user_choice = input("Your choice: ").lower()
-    
-    while user_choice not in options:
-        print("Invalid choice! Please choose rock, paper, or scissors.")
-        user_choice = input("Your choice: ").lower()
-    
-    print(f"\nYou chose: {user_choice}")
-    print(f"Computer chose: {computer_choice}")
-    
-    if user_choice == computer_choice:
-        print("It's a tie!")
-        return 'tie'
-    elif (user_choice == 'rock' and computer_choice == 'scissors') or \
-         (user_choice == 'paper' and computer_choice == 'rock') or \
-         (user_choice == 'scissors' and computer_choice == 'paper'):
+options = ['rock', 'paper', 'scissors']
+wins = losses = ties = 0
+
+while True:
+    computer = random.choice(options)
+    user = input("rock, paper, or scissors: ").lower()
+
+    while user not in options:
+        user = input("Invalid. Try again: ").lower()
+
+    print(f"Computer chose: {computer}")
+
+    if user == computer:
+        print("Tie!")
+        ties += 1
+    elif (user == 'rock' and computer == 'scissors') or \
+         (user == 'paper' and computer == 'rock') or \
+         (user == 'scissors' and computer == 'paper'):
         print("You win!")
-        return 'win'
+        wins += 1
     else:
         print("Computer wins!")
-        return 'loss'
+        losses += 1
 
-def main():
-    """Main game loop"""
-    print("=== Rock-Paper-Scissors Game ===")
-    
-    wins = 0
-    losses = 0
-    ties = 0
-    
-    while True:
-        result = play_game()
-        
-        if result == 'win':
-            wins += 1
-        elif result == 'loss':
-            losses += 1
-        else:
-            ties += 1
-        
-        print(f"\nScore - Wins: {wins}, Losses: {losses}, Ties: {ties}")
-        
-        play_again = input("\nDo you want to play again? (yes/no): ").lower()
-        while play_again not in ['yes', 'no', 'y', 'n']:
-            play_again = input("Please enter 'yes' or 'no': ").lower()
-        
-        if play_again in ['no', 'n']:
-            print("\nThanks for playing! Final score:")
-            print(f"Wins: {wins}, Losses: {losses}, Ties: {ties}")
-            break
+    print(f"Wins: {wins}, Losses: {losses}, Ties: {ties}")
 
-if __name__ == "__main__":
-    main()
+    again = input("Play again? (yes/no): ").lower()
+    if again in ['no', 'n']:
+        break
